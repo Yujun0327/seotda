@@ -1,0 +1,131 @@
+/* ------------------------------------------------------------------ */
+/* 섯다 — "뒷방" design tokens. See src/assets/art-bible.md.             */
+/* ------------------------------------------------------------------ */
+@import '@fontsource/song-myung/400.css';
+@import '@fontsource/gowun-batang/400.css';
+@import '@fontsource/gowun-batang/700.css';
+@import '@fontsource/noto-sans-kr/500.css';
+@import '@fontsource/noto-sans-kr/700.css';
+
+:root {
+  --felt: #6b1a1f;
+  --felt-deep: #4a1015;
+  --mahogany: #2a1610;
+  --ivory: #f0e6d2;
+  --ivory-deep: #dccfb3;
+  --ink: #1a1210;
+  --ink-soft: rgb(26 18 16 / 0.62);
+  --line: rgb(26 18 16 / 0.24);
+  --brass: #b8862b;
+  --brass-hi: #e6c26a;
+  --brass-lo: #7a5a1a;
+  --smoke: rgb(240 230 210 / 0.66);
+  --on-felt: #f0e6d2;
+  --danger: #d33b2f;
+
+  --font-display: 'Song Myung', 'Apple SD Gothic Neo', serif;
+  --font-body: 'Gowun Batang', 'Apple SD Gothic Neo', serif;
+  --font-ui: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+
+  --fs-xs: 0.8rem;
+  --fs-sm: 1rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.563rem;
+  --fs-xl: 1.953rem;
+  --fs-2xl: 2.441rem;
+  --fs-3xl: 3.052rem;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  --radius: 6px;
+  --r-card: 10px;
+  --shadow: 0 2px 0 rgb(0 0 0 / 0.4), 0 8px 18px rgb(0 0 0 / 0.35);
+  --hairline: inset 0 0 0 1px var(--line);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+
+body {
+  background: var(--felt);
+  color: var(--on-felt);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+#app { min-height: 100dvh; position: relative; isolation: isolate; }
+
+/* the lamp: a warm pool over red felt, heavy vignette, felt nap */
+#app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 28%, rgb(255 205 130 / 0.18), transparent 70%),
+    radial-gradient(ellipse 120% 100% at 50% 55%, transparent 45%, rgb(0 0 0 / 0.62) 100%),
+    var(--grain);
+  background-size: auto, auto, 160px 160px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.02em; margin: 0; }
+button { font: inherit; cursor: pointer; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.label { font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.08em; color: var(--smoke); }
+
+.foil-text {
+  background: linear-gradient(135deg, var(--brass) 0%, var(--brass-hi) 45%, var(--brass) 70%, var(--brass-lo) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--ivory);
+  border: 1px solid rgb(0 0 0 / 0.5);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 10px 22px;
+  min-height: 44px;
+  transition: background 120ms ease, transform 120ms ease;
+}
+.btn:hover { background: #fbf3e0; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+.btn--gold { background: var(--brass); border-color: var(--brass-lo); color: var(--mahogany); }
+.btn--gold:hover { background: var(--brass-hi); }
+.btn--danger { background: var(--danger); border-color: #7a1810; color: var(--ivory); }
+.btn--quiet { background: transparent; box-shadow: none; border-color: rgb(240 230 210 / 0.35); color: var(--on-felt); }
+.btn--quiet:hover { background: rgb(0 0 0 / 0.2); }
+
+:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 2px; }
+
+.panel { background: var(--ivory); color: var(--ink); border-radius: var(--radius); box-shadow: var(--hairline), var(--shadow); position: relative; }
+.panel::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background-image: var(--grain); opacity: 0.06; pointer-events: none; }
+.panel .label { color: var(--ink-soft); }
+
+.rail { background: var(--mahogany); color: var(--on-felt); border-radius: var(--radius); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), 0 2px 8px rgb(0 0 0 / 0.45); }
+
+input[type='text'] { font: inherit; color: var(--ink); background: var(--ivory); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; min-height: 44px; }
+input[type='text']::placeholder { color: var(--ink-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
