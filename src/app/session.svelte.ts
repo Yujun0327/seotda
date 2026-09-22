@@ -16,7 +16,7 @@ export const RULES_VERSION = '1'
 const BUY_INS = MONEY_RULES.seotda?.table?.buyIns ?? [20000, 50000, 100000]
 /** 삥 per buy-in tier. */
 export function anteFor(buyIn: number): number {
-  return Math.max(100, Math.round(buyIn / 40 / 100) * 100)
+  return Math.max(100, Math.round(buyIn / 40 / 50) * 50)
 }
 
 function seed32(): number {
