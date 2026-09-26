@@ -78,7 +78,7 @@
 </div>
 
 <style>
-  .celebration { position: fixed; inset: 0; z-index: 22; overflow: hidden; pointer-events: none; display: grid; place-items: center; }
+  .celebration { position: fixed; inset: 0; z-index: 22; overflow: hidden; pointer-events: none; display: grid; justify-items: center; align-items: start; padding-top: 24vh; }
   .banner { text-align: center; animation: banner-pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
   .kicker { color: var(--brass-hi); margin: 0 0 var(--sp-1); font-size: var(--fs-sm); }
   .stamp {
