@@ -100,7 +100,8 @@
     return ''
   }
 
-  const revealed = (seat: Seat) => gs.lastDeal?.hands.find((h) => h.seat === seat) ?? null
+  /** A showdown hand from the deal that just ended — only between deals, never during the next one. */
+  const revealed = (seat: Seat) => (gs.phase === 'betweenDeals' ? (gs.lastDeal?.hands.find((h) => h.seat === seat) ?? null) : null)
   const cardsFor = (seat: Seat): string[] => {
     const p = gs.players[seat]
     if (p.cards.length) return p.cards
@@ -167,7 +168,7 @@
             <span class="name">{gs.config.names[seat]}{idx === 0 && !spectator ? ' (나)' : ''}</span>
             <span class="stack tabular">{fmt(p.stack)}</span>
             {#if seatLabel(seat)}<span class="state">{seatLabel(seat)}</span>{/if}
-            {#if rv}<span class="hand-label">{rv.label}</span>{:else if idx === 0 && online?.myHand}<span class="hand-label">{online.myHand.label}</span>{/if}
+            {#if rv}<span class="hand-label">{rv.label}</span>{:else if idx === 0 && gs.phase === 'betting' && online?.myHand}<span class="hand-label">{online.myHand.label}</span>{/if}
           </div>
           {#if p.committed > 0 && gs.phase === 'betting'}
             <div class="bet" in:fly={{ y: 20, duration: dur(300), easing: settle }}>
