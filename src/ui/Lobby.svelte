@@ -94,15 +94,15 @@
           </div>
           <span class="label">판 수</span>
           <div class="seg" role="group" aria-label="판 수">
-            {#each [6, 12, 24] as n (n)}
-              <button class="btn" class:btn--gold={session.hostMaxDeals === n} onclick={() => (session.hostMaxDeals = n)}>{n}판</button>
+            {#each [6, 12, 24, 0] as n (n)}
+              <button class="btn" class:btn--gold={session.hostMaxDeals === n} onclick={() => (session.hostMaxDeals = n)}>{n === 0 ? '무제한' : `${n}판`}</button>
             {/each}
           </div>
         </div>
       {/if}
       <p class="hint">
         {#if session.hostBuyIn > 0}
-          판돈 {session.hostBuyIn.toLocaleString()} · 삥 {session.ante.toLocaleString()} · {session.hostMaxDeals}판 뒤 정산. 판돈은 시작할 때 지갑에서 걸립니다.
+          판돈 {session.hostBuyIn.toLocaleString()} · 삥 {session.ante.toLocaleString()} · {session.hostMaxDeals ? `${session.hostMaxDeals}판 뒤 정산` : '방장이 테이블을 닫을 때 정산'}. 판돈은 시작할 때 지갑에서 걸립니다.
         {:else}
           돈 없이 칩만 가지고 칩니다.
         {/if}

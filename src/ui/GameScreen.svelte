@@ -131,7 +131,7 @@
     <button class="btn btn--quiet exit" onclick={() => (rulesOpen = true)}>족보</button>
     <div class="turn">
       <span class="turnline">{turnLine}</span>
-      <span class="label">{gs.dealsPlayed}{gs.config.maxDeals ? `/${gs.config.maxDeals}` : ''}판 · 삥 {fmt(gs.config.ante)}</span>
+      <span class="label">{gs.dealsPlayed}{gs.config.maxDeals ? `/${gs.config.maxDeals}` : ''}판{gs.config.maxDeals ? '' : ' · 무제한'} · 삥 {fmt(gs.config.ante)}</span>
     </div>
     {#if online?.isHost && has('closeTable')}
       <button class="btn btn--quiet exit" onclick={() => submit({ type: 'closeTable' })}>테이블 닫기</button>
